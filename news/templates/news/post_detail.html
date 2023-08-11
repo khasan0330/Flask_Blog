@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock title %}
+
+{% block main %}
+
+  <div class="card">
+  <div class="card-header d-flex justify-content-between">
+    {{ post.category.title }}
+            <div>
+                {% if current_user|string == post.author|string %}
+                <a href="{{ url_for('delete_post', id=post.id ) }}" class="btn btn-outline-danger">Удалить</a>
+                <a href="{{ url_for('update_post', id=post.id ) }}" class="btn btn-outline-secondary">Редактировать</a>
+                {% endif %}
+                <a href="{{ url_for('category_list', id=post.category.id )  }}" class="btn btn-outline-secondary">Назад</a>
+            </div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ post.title }}</h5>
+    <p class="card-text">{{ post.content  }}</p>
+  </div>
+  <div class="card-footer text-muted">
+    Дата: {{ post.created | time_filter }}
+    Автор: <a href="{{ url_for('user_profile', id=post.author.id) }}">{{ post.author  }}</a>
+  </div>
+</div>
+
+{% endblock main %}

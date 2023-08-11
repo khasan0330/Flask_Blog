@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профайл
+{% endblock title %}
+
+{% block main %}
+
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Профайл пользователя</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+          {% if user.photo %}
+            <img src="{{ url_for('static', filename='images/' + user.photo) }}" alt="avatar" class="img-fluid" style="width: 150px;">
+          {% else %}
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+          {% endif %}
+            <h5 class="my-3">логин: {{ user.username }}</h5>
+          {% if current_user|string == user.username %}
+            <div class="d-flex justify-content-center mb-2">
+              <a href="{{ url_for('update_user', id=user.id ) }}" class="btn btn-outline-secondary ms-1">Редактировать</a>
+              <a href="{{ url_for('delete_user', id=user.id ) }}" class="btn btn-outline-danger ms-1">Удалить</a>
+            </div>
+          {% endif %}
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Имя</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.first_name }}</p>
+              </div>
+            </div>
+            <hr>
+             <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Фамилия</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.last_name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Контактный номер</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.phone }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Почта</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Bio</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.bio }}</p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock main %}

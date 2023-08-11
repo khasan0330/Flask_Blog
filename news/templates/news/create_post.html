@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создать
+{% endblock title %}
+
+{% block main %}
+
+{% if 'update' in request.path %}
+<form action="{{ url_for('update_post', id=id) }}" method="POST" enctype="multipart/form-data">
+{% else %}
+<form action="{{ url_for('create_post') }}" method="POST" enctype="multipart/form-data">
+{% endif %}
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center">
+                    {% if 'update' in request.path %}
+                    Изменения статьи
+                    {% else %}
+                    Добавление новой статьи
+                    {% endif %}
+                </h2>
+                {% for field in form %}
+                    <div class="card-body">
+                        {{ field.label() }}
+                        {{ field(class='form-control') }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success btn-lg">
+                    {% if 'update' in request.path %}
+                     Изменить статью
+                    {% else %}
+                    Добавить стать
+                     {% endif %}
+
+                </button>
+            </div>
+        </div>
+
+</form>
+{% endblock main %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Войти
+{% endblock title %}
+
+{% block main %}
+<h2 class="text-center">
+    Авторизация пользователя
+</h2>
+
+<form action="{{ url_for('user_login') }}" method="POST">
+    <div class="d-flex justify-content-center shadow bg-white rounded">
+        <div class="col-md-8">
+
+            {% for field in form %}
+            <div class="card-body">
+                {{ field.label() }}
+                {{ field(class='form-control') }}
+            </div>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn-success btn-lg">
+                Войти
+            </button>
+
+        </div>
+    </div>
+</form>
+{% endblock main %}

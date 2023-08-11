@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирования профайла
+{% endblock title %}
+
+{% block main %}
+
+
+<h2 class="text-center">Редактирования профайла</h2>
+<form action="#!" method="POST" enctype="multipart/form-data">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                {% for field in form %}
+                    <div class="card-body">
+                        {{ field.label() }}
+                        {{ field(class='form-control') }}
+                    </div>
+                {% endfor %}
+                <br>
+                <button type="submit" class="btn btn-success">Применить</button>
+                <a href="{{ url_for('user_profile', id=current_user.id) }}" class="btn btn-outline-secondary">Назад</a>
+            </div>
+        </div>
+</form>
+
+
+{% endblock main %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ {{ title }}
+{% endblock title %}
+
+{% block main %}
+<div><div style="margin-top: 20px;"></div></div>
+
+<div class="row">
+{% include 'news/components/_post_card.html' %}
+</div>
+
+{% endblock main %}

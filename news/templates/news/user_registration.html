@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block main %}
+
+{% include 'news/components/_form_errors.html' %}
+<form action="{{ url_for('user_registration') }}" method="POST" >
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center">
+                    Регистрация пользователя
+                </h2>
+                {% for field in form %}
+                    <div class="card-body">
+                        {{ field.label() }}
+                        {{ field(class='form-control') }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success btn-lg">
+                    Регистрировать
+                </button>
+
+            </div>
+        </div>
+</form>
+{% endblock main %}
